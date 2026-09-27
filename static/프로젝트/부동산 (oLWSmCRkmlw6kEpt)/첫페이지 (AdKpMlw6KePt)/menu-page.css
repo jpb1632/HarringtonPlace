@@ -160,6 +160,7 @@ body.menu-page-view {
   display: block;
   width: min(33.6rem, 92%);
   height: auto;
+  transform: scale(1.726725);
 }
 
 .menupage-content-lead {

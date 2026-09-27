@@ -78,7 +78,7 @@ html, body { margin: 0 !important; padding: 0 !important
 .properties-N1 .header-left {
   display: flex;
   align-items: center;
-  gap: 2.6rem;
+  gap: 1.3rem;
   margin-left: -1.6rem
 }
 .properties-N1 .header-title {
@@ -92,12 +92,16 @@ html, body { margin: 0 !important; padding: 0 !important
 }
 .properties-N1 .header-title .brand-mark {
   display: block;
-  width: 17.42rem;
-  height: 4.58rem;
+  position: relative;
+  left: 3rem;
+  width: 18.8rem;
+  height: 7.189rem;
   margin-top: 0.72rem;
   background: url("../../../../new-assets/paragon/logo_on_p1.png") left center / contain no-repeat;
   font-size: 0;
-  line-height: 0
+  line-height: 0;
+  transform: scale(1.1);
+  transform-origin: left center
 }
 .properties-N1 .header-title .brand-prefix {
   margin-right: 0.1rem;
@@ -392,13 +396,13 @@ html, body { margin: 0 !important; padding: 0 !important
 .properties-N1 .fullmenu-title a {
   display: inline-flex;
   align-items: center;
-  height: 5.16rem
+  height: 8.91rem
 }
 .properties-N1 .fullmenu-title img {
   width: auto;
   height: 100%;
   object-fit: contain;
-  transform: translateX(-4.3rem);
+  transform: translateX(0);
 }
 .properties-N1 .fullmenu-member {
   display: flex;
@@ -526,8 +530,8 @@ html, body { margin: 0 !important; padding: 0 !important
 }
 @media (min-width: 993px) {
 .properties-N1 .header-left {
-    gap: 2.8rem;
-    margin-left: -1.6rem
+    gap: 3.6rem;
+    margin-left: -2.1rem
  }
 .properties-N1 .header-title .brand-mark {
     margin-top: 0.72rem
@@ -660,10 +664,11 @@ html, body { margin: 0 !important; padding: 0 !important
     height: 5.5rem
  }
 .properties-N1 .header-title .brand-mark {
-    height: 3.48rem;
-    width: 13.2rem;
+    left: 1rem;
+    height: 5.463rem;
+    width: 13.5rem;
     margin-top: 0;
-    transform: translateY(0.24rem)
+    transform: translateY(0.24rem) scale(1.1)
  }
 .properties-N1 .header-title {
     display: flex;
@@ -827,8 +832,9 @@ html, body { margin: 0 !important; padding: 0 !important
     height: 4.94rem
  }
 .properties-N1 .header-title .brand-mark {
-    height: 2.94rem;
-    width: 11.2rem
+    left: 0.5rem;
+    height: 4.615rem;
+    width: 11.5rem
  }
 .properties-N1 .header-utils .call-inline {
     font-size: 1.25rem;

@@ -308,7 +308,7 @@
         canvasLayout: [
           {
             type: "image",
-            src: "../../../../new-assets/paragon/main2_p1.webp",
+            src: "../../../../new-assets/paragon/main2_p1.png",
           },
         ],
         specs: [
