@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /favicon.ico
+Allow: /favicon.png
+Allow: /favicon-16x16.png
+Allow: /favicon-32x32.png
+Allow: /apple-touch-icon.png
+Allow: /android-chrome-192x192.png
+Allow: /android-chrome-512x512.png
+Allow: /site.webmanifest
+Allow: /new-assets/link_title_h1.png
+Disallow: /new-assets/
+Disallow: /static/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B6%80%EB%8F%99%EC%82%B0%20(oLWSmCRkmlw6kEpt)/resources/images/

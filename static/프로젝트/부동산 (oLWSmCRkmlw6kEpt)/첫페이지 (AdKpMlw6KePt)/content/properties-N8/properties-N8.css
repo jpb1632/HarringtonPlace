@@ -1,0 +1,167 @@
+﻿.properties-N8 {
+  overflow: hidden;
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background: #fff;
+}
+
+.properties-N8 .contents-inner {
+  width: 100%;
+}
+
+.properties-N8 .title-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.properties-N8 .ico-dot {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: url("../../resources/icons/ico_diamond.svg") no-repeat center/contain;
+}
+
+.properties-N8 .map-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+}
+
+.properties-N8 .addr {
+  align-self: stretch;
+}
+
+.properties-N8 .thumb {
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.properties-N8 .thumb img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Scroll reveal for N8 image stack */
+.properties-N8.reveal-ready .addr {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.properties-N8.reveal-ready .addr.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.properties-N8 dl {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 2rem 0 3.2rem;
+}
+
+.properties-N8 dt {
+  color: var(--primary);
+  text-align: center;
+}
+
+.properties-N8 dd {
+  margin: 0;
+  color: var(--primary);
+}
+
+.properties-N8 .link-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.9rem;
+}
+
+.properties-N8 .link-wrap a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+}
+
+.properties-N8 .link-wrap a:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: -1.3rem;
+  width: 0.1rem;
+  height: 1.6rem;
+  background: #767676;
+}
+
+.properties-N8 .link-wrap i {
+  display: flex;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 2.4rem;
+}
+
+@media (max-width: 992px) {
+  .properties-N8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .properties-N8 .title-area {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .properties-N8 .ico-dot {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .properties-N8 .map-area {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .properties-N8 .thumb {
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .properties-N8 dl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1.6rem 0 2rem;
+  }
+
+  .properties-N8 .link-wrap {
+    gap: 2.5rem;
+  }
+
+  .properties-N8 .link-wrap a {
+    gap: 0.6rem;
+  }
+
+  .properties-N8 .link-wrap i {
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .properties-N8.reveal-ready .addr {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+

@@ -1,0 +1,74 @@
+.properties-N10 {
+  overflow: hidden;
+  position: relative;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background: url("../../resources/images/properties_N10_01.png") no-repeat center/cover;
+}
+
+.properties-N10 .contents-inner {
+  width: 100%;
+}
+
+.properties-N10 .title-area {
+  margin-bottom: 6rem;
+}
+
+.properties-N10 .title-area h2 {
+  color: var(--white);
+  text-align: center;
+}
+
+.properties-N10 .link-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.properties-N10 .link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  min-width: 37rem;
+  height: 8.8rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.properties-N10 .link i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+@media (max-width: 992px) {
+  .properties-N10 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background: url("../../resources/images/properties_N10_02.png") no-repeat center/cover;
+  }
+
+  .properties-N10 .title-area {
+    margin-bottom: 3rem;
+  }
+
+  .properties-N10 .link-wrap {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .properties-N10 .link {
+    min-width: 21.1rem;
+    height: 6.2rem;
+  }
+
+  .properties-N10 .link i {
+    width: 2rem;
+    height: 2rem;
+  }
+}

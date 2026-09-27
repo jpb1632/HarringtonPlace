@@ -1,0 +1,30 @@
+﻿# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# build / cache
+dist/
+build/
+.cache/
+coverage/
+
+# env files
+.env
+.env.*
+
+# editor / OS
+.vscode/
+.claude/
+.DS_Store
+Thumbs.db
+
+# temp/session
+.temha_session.json
+.backup/
+workspace/
+정준교-workspace/

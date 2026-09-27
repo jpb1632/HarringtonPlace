@@ -1,0 +1,36 @@
+{
+  "name": "paragon",
+  "version": "0.1.0",
+  "main": "cli.js",
+  "scripts": {
+    "login": "node cli.js login",
+    "pull": "node cli.js pull",
+    "push": "node cli.js push",
+    "preview": "gulp --gulpfile gulpfile.mjs",
+    "serve": "gulp temha --gulpfile gulpfile.mjs",
+    "trash:list": "node cli.js trash list",
+    "trash:restore": "node cli.js trash restore",
+    "trash:empty": "node cli.js trash empty",
+    "project-trash:list": "node cli.js project-trash list",
+    "project-trash:restore": "node cli.js project-trash restore",
+    "project-trash:empty": "node cli.js project-trash empty"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.10",
+    "del": "^7.0.0",
+    "gulp": "^4.0.2",
+    "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "browser-sync": "^3.0.4",
+    "commander": "^11.1.0",
+    "form-data": "^4.0.0",
+    "glob": "^11.0.3",
+    "minimist": "^1.2.6",
+    "open": "^10.1.2",
+    "ora": "^8.0.1",
+    "postcss": "^8.5.6",
+    "uuid": "^9.0.1"
+  }
+}

@@ -1,0 +1,47 @@
+.properties-N6 {
+  overflow: hidden;
+  position: relative;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.properties-N6 .contents-inner {
+  width: 100%;
+}
+
+.properties-N6 .n6-image-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.properties-N6 .n6-image-item {
+  overflow: hidden;
+  border-radius: 0.8rem;
+}
+
+.properties-N6 .n6-image-item+.n6-image-item {
+  margin-top: 4rem;
+}
+
+.properties-N6 .n6-image-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 992px) {
+  .properties-N6 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .properties-N6 .n6-image-list {
+    max-width: none;
+  }
+
+  .properties-N6 .n6-image-item+.n6-image-item {
+    margin-top: 2rem;
+  }
+}

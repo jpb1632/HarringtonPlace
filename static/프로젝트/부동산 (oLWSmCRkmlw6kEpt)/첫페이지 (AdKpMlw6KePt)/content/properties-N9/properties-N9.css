@@ -1,0 +1,549 @@
+﻿.properties-N9 {
+  overflow: hidden;
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 14rem;
+}
+
+/* Icon-font fallback fix */
+.properties-N9 .checkset.checkset-fill .checkset-input:checked+.checkset-label::after {
+  content: "";
+  left: 0.72rem;
+  top: 50%;
+  width: 0.46rem;
+  height: 0.84rem;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translateY(-58%) rotate(45deg);
+  font-family: inherit !important;
+  font-size: 0;
+}
+
+.properties-N9 .modalset .modalset-header .modalset-close {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  color: var(--text-color1);
+}
+
+.properties-N9 .modalset .modalset-header .modalset-close::before,
+.properties-N9 .modalset .modalset-header .modalset-close::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.4rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.properties-N9 .modalset .modalset-header .modalset-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.properties-N9 .modalset .modalset-header .modalset-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.properties-N9 .contents-inner {
+  width: 100%;
+}
+
+.properties-N9 .title-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.properties-N9 .ico-dot {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: url("../../resources/icons/ico_diamond.svg") no-repeat center/contain;
+}
+
+/* ── 금빛 애니메이션 테두리 ── */
+@keyframes n9-gold-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes n9-outer-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(167, 130, 50, 0.13), 0 8px 32px rgba(0, 0, 0, 0.07); }
+  50%       { box-shadow: 0 0 38px rgba(167, 130, 50, 0.26), 0 8px 32px rgba(0, 0, 0, 0.07); }
+}
+
+.properties-N9 .form-group {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem;
+  border-radius: 1.4rem;
+  overflow: hidden;
+  background: #fff;
+  animation: n9-outer-glow 3.2s ease-in-out infinite;
+}
+
+/* 회전하는 금빛 원뿔 그라디언트 */
+.properties-N9 .form-group::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  background: conic-gradient(
+    from 0deg,
+    #8a6520   0deg,
+    #8a6520  78deg,
+    #b87d28  96deg,
+    #e8b84b 112deg,
+    #f8e08a 124deg,
+    #fffcf0 132deg,
+    #f8e08a 140deg,
+    #e8b84b 156deg,
+    #b87d28 174deg,
+    #8a6520 192deg,
+    #8a6520 360deg
+  );
+  animation: n9-gold-spin 5.5s linear infinite;
+  z-index: 0;
+}
+
+/* 내부 흰 배경 — 테두리만 보이게 */
+.properties-N9 .form-group::after {
+  content: "";
+  position: absolute;
+  inset: 2.5px;
+  border-radius: calc(1.4rem - 2.5px);
+  background: #fff;
+  z-index: 1;
+}
+
+/* 내용이 테두리 위에 표시되도록 */
+.properties-N9 .form-group > * {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .properties-N9 .form-group {
+    animation: none;
+    box-shadow: 0 0 22px rgba(167, 130, 50, 0.18), 0 6px 20px rgba(0, 0, 0, 0.06);
+    padding: 2.4rem 2rem;
+    -webkit-transform: none;
+    transform: none;
+  }
+  .properties-N9 .form-group::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    will-change: auto;
+    background: conic-gradient(
+      from var(--n9-angle, 0deg),
+      #8a6520   0deg,
+      #8a6520  78deg,
+      #b87d28  96deg,
+      #e8b84b 112deg,
+      #f8e08a 124deg,
+      #fffcf0 132deg,
+      #f8e08a 140deg,
+      #e8b84b 156deg,
+      #b87d28 174deg,
+      #8a6520 192deg,
+      #8a6520 360deg
+    );
+    animation: n9-angle-spin 7s linear infinite;
+  }
+  .properties-N9 .form-group::after {
+    border-radius: calc(1.4rem - 2.5px);
+  }
+}
+
+.properties-N9 .form-group .form-tit {
+  margin-bottom: 0.8rem;
+  font-weight: var(--fw-medium);
+}
+
+.properties-N9 .form-group .form-tit+.checkset-wrap,
+.properties-N9 .form-group .form-tit+.radioset-wrap {
+  gap: 1.2rem 4rem;
+  margin-top: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.properties-N9 .form-group .form-tit span {
+  color: #c90000;
+}
+
+.properties-N9 .form-box+.form-box {
+  margin-top: 1.6rem;
+}
+
+.properties-N9 .inputset+.inputset {
+  margin-top: 4rem;
+}
+
+.properties-N9 .inputset .inputset-tit {
+  margin-bottom: 0.8rem;
+}
+
+.properties-N9 .inputset .inputset-label {
+  width: 100%;
+}
+
+.properties-N9 .inputset .inputset-textarea {
+  height: 14rem;
+  resize: none;
+}
+
+.properties-N9 select.form-control {
+  cursor: pointer;
+  color: var(--text-color1);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #a78232 50%), linear-gradient(135deg, #a78232 50%, transparent 50%);
+  background-position: calc(100% - 2rem) 50%, calc(100% - 1.4rem) 50%;
+  background-size: 0.6rem 0.6rem, 0.6rem 0.6rem;
+  background-repeat: no-repeat;
+  padding-right: 4.4rem;
+}
+
+.properties-N9 select.form-control:invalid,
+.properties-N9 input[type="date"].form-control:invalid {
+  color: #7b8794;
+}
+
+.properties-N9 input[type="date"].form-control::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.75;
+  filter: sepia(50%) saturate(650%) hue-rotate(2deg);
+}
+
+.properties-N9 .form-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+}
+
+.properties-N9 .contents-agree {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: flex-end;
+  gap: 0.8rem;
+  text-align: right;
+}
+
+.properties-N9 .form-btn {
+  width: 100%;
+}
+
+.properties-N9 .form-btn .btnset-primary {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  height: 7rem;
+  border-radius: 1.6rem;
+  background: #c96f18;
+  border-color: #c96f18;
+  color: #fff;
+  font-size: 3.9rem;
+  font-weight: 800 !important;
+  letter-spacing: 0.045em;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+  white-space: nowrap;
+  word-break: keep-all;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  isolation: isolate;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+}
+
+.properties-N9 .form-btn .btnset-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.34) 44%, rgba(255, 255, 255, 0) 68%);
+  transform: translateX(-120%);
+  animation: n9-submit-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.properties-N9 .form-btn .btnset-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.properties-N9 .form-btn .btnset-primary:hover,
+.properties-N9 .form-btn .btnset-primary:focus-visible {
+  background: #dc7f22;
+  border-color: #dc7f22;
+  box-shadow: 0 1.4rem 2.8rem rgba(201, 111, 24, 0.28), 0 0 0 0.35rem rgba(201, 111, 24, 0.14);
+  transform: translateY(-1px);
+}
+
+.properties-N9 .form-btn .btnset-primary:active {
+  background: #a95b12;
+  border-color: #a95b12;
+  transform: translateY(0);
+  box-shadow: 0 0.8rem 1.8rem rgba(176, 91, 18, 0.22);
+}
+
+@keyframes n9-submit-shine {
+  0%, 42% { transform: translateX(-120%); }
+  64%, 100% { transform: translateX(120%); }
+}
+
+@media (max-width: 640px) {
+  .properties-N9 .form-btn .btnset-primary {
+    height: 6.2rem;
+    font-size: 2.9rem;
+    letter-spacing: 0.025em;
+  }
+}
+
+@media (max-width: 380px) {
+  .properties-N9 .form-btn .btnset-primary {
+    font-size: 2.55rem;
+    letter-spacing: 0.012em;
+  }
+}
+
+.properties-N9 .info-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.4rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.properties-N9 .info-title h3 {
+  font-size: var(--fs-h4);
+}
+
+.properties-N9 .modal-close {
+  cursor: pointer;
+}
+
+.properties-N9 .info-area {
+  overflow-y: auto;
+}
+
+.properties-N9 .info-group+.info-group {
+  margin-top: 2.4rem;
+}
+
+.properties-N9 .info-group strong {
+  display: block;
+  padding-bottom: 1.2rem;
+  font-size: var(--fs-h5);
+}
+
+.properties-N9 .info-desc {
+  overflow-y: auto;
+  padding: 1.6rem;
+  max-height: 20.7rem;
+  background: #f8f8fa;
+  border-radius: 1.6rem;
+}
+
+.properties-N9 .info-desc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.properties-N9 .info-desc::-webkit-scrollbar-track {
+  background-color: #ddd;
+}
+
+.properties-N9 .info-desc::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+.properties-N9 .info-desc p {
+  font-size: var(--fs-p1);
+}
+
+.properties-N9 .info-desc p.fw-medium {
+  font-weight: var(--fw-medium);
+}
+
+.properties-N9 .info-desc .mtb {
+  margin: 2.4rem 0;
+}
+
+.properties-N9 .info-desc em {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 2.4rem 0 1rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.properties-N9 .info-list em::before {
+  content: "";
+  margin-right: 0.8rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--black);
+  border-radius: 50%;
+}
+
+.properties-N9 .info-list p {
+  padding-left: 1.2rem;
+}
+
+.properties-N9 .privacy-policy-content {
+  max-height: none;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  white-space: normal;
+}
+
+.properties-N9 .modal-confirm .modal-area {
+  position: relative;
+  padding: 3.2rem;
+  max-width: 36rem;
+  background: var(--text-color1);
+  border-radius: 0.8rem;
+}
+
+.properties-N9 .modal-confirm .modal-icon {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.6rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 0;
+  background: transparent;
+}
+
+.properties-N9 .modal-confirm .modal-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.properties-N9 .modal-confirm .modal-figure {
+  margin: 0 auto;
+  width: 5.6rem;
+  height: 5.6rem;
+}
+
+.properties-N9 .modal-confirm .modal-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.properties-N9 .modal-confirm .modal-body {
+  font-size: var(--fs-p1);
+  text-align: center;
+  color: var(--white);
+}
+
+.properties-N9 .modal-confirm .modal-textarea {
+  margin: 1.6rem 0;
+}
+
+.properties-N9 .modal-confirm .modal-footer {
+  text-align: center;
+}
+
+.properties-N9 .modal-confirm .modal-footer .btnset {
+  min-width: 9.4rem;
+  height: 4rem;
+  border-radius: 0.4rem;
+}
+
+.properties-N9 .modal-confirm .modal-footer .btnset.btnset-line-light {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.properties-N9 .modalset .modalset-header .modalset-close::before {
+  color: var(--text-color1);
+}
+
+@media (max-width: 992px) {
+  .properties-N9 {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .properties-N9 .form-group {
+    padding: 2.4rem 2rem;
+  }
+
+  .properties-N9 .title-area {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .properties-N9 .ico-dot {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .properties-N9 .form-box+.form-box {
+    margin-top: 1.4rem;
+  }
+
+  .properties-N9 .form-group .form-tit+.checkset-wrap,
+  .properties-N9 .form-group .form-tit+.radioset-wrap {
+    gap: 0.8rem 2.4rem;
+  }
+
+  .properties-N9 .form-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .properties-N9 .contents-agree {
+    justify-content: flex-end;
+    align-self: flex-end;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.8rem;
+  }
+
+  .properties-N9 .form-btn {
+    max-width: 100%;
+  }
+
+  .properties-N9 .modal-confirm .modal-figure {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .properties-N9 .modal-confirm .modal-textarea {
+    margin: 0.8rem 0;
+  }
+
+  .properties-N9 .form-group {
+    max-width: 100%;
+  }
+}
