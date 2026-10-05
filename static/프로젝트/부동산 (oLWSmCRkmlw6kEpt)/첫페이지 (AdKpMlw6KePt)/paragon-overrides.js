@@ -509,17 +509,65 @@
     });
   }
 
+  function initCallInquiryFeedback() {
+    var link = document.querySelector(".n5-call-inquiry-banner");
+    var feedback = document.querySelector(".n5-call-feedback");
+    var message = document.querySelector(".n5-call-feedback-message");
+    var copyButton = document.querySelector(".n5-call-copy-btn");
+    if (!link || !feedback || !message || !copyButton) return;
+    var fallbackTimer = 0;
+    var handoffObserved = false;
+
+    function notePhoneHandoff() {
+      handoffObserved = true;
+      window.clearTimeout(fallbackTimer);
+      feedback.hidden = true;
+    }
+
+    window.addEventListener("blur", notePhoneHandoff);
+    window.addEventListener("pagehide", notePhoneHandoff);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) notePhoneHandoff();
+    });
+
+    link.addEventListener("click", function () {
+      message.textContent = "전화 앱 연결을 시도했습니다.\n열리지 않으면 1688-4008로 전화해 주세요.";
+      feedback.hidden = true;
+      handoffObserved = false;
+      window.clearTimeout(fallbackTimer);
+      fallbackTimer = window.setTimeout(function () {
+        if (!handoffObserved && document.visibilityState === "visible" && document.hasFocus()) {
+          feedback.hidden = false;
+        }
+      }, 1200);
+    });
+
+    copyButton.addEventListener("click", function () {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        message.textContent = "번호 복사를 지원하지 않는 브라우저입니다. 1688-4008로 전화해 주세요.";
+        return;
+      }
+      navigator.clipboard.writeText("16884008").then(function () {
+        message.textContent = "1688-4008 번호를 복사했습니다.";
+      }, function () {
+        message.textContent = "번호를 복사하지 못했습니다. 1688-4008로 전화해 주세요.";
+      });
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       watchSpecializedMenuLabels();
       initUnitTypes();
       initPromoVideoAutoplay();
       initConsultationDeepLink();
+      initCallInquiryFeedback();
     });
   } else {
     watchSpecializedMenuLabels();
     initUnitTypes();
     initPromoVideoAutoplay();
     initConsultationDeepLink();
+    initCallInquiryFeedback();
   }
 })();

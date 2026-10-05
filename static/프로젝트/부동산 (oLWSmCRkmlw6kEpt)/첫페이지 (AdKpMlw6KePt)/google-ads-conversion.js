@@ -49,11 +49,9 @@
       if (link.dataset.adsCallConversionBound === "true") return;
       link.dataset.adsCallConversionBound = "true";
 
-      link.addEventListener("click", function (event) {
-        var url = link.getAttribute("href");
-        if (!url) return;
-        event.preventDefault();
-        window.gtag_report_conversion(url);
+      link.addEventListener("click", function () {
+        // Keep the native tel: navigation in the user's click gesture.
+        window.gtag_report_conversion();
       });
     });
   }

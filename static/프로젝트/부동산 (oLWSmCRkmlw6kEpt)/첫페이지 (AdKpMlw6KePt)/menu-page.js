@@ -1,6 +1,6 @@
 (function () {
-  const SITE_NAME = "Paragon";
-  const FIXED_CONTENT_TITLE = "Paragon";
+  const SITE_NAME = "의정부역 해링턴플레이스";
+  const FIXED_CONTENT_TITLE = "의정부역 해링턴플레이스";
   const CONTENT_TITLE_LOGO_SRC = "../../../../new-assets/paragon/logo_on_p1.png";
   function initBasicContentGuard() {
     if (window.__basicContentGuardInitialized) return;
@@ -300,7 +300,7 @@
   const CONTENT_CONFIG = {
     business: {
       overview: {
-        title: "Paragon 사업개요",
+        title: "의정부역 해링턴플레이스 사업개요",
         subtitle: "가격에 놀라고 · 입지에 반하다",
         copy: "생활·교통·문화 인프라를 누리는 프리미엄 중심 입지",
         copySub: "",
@@ -312,7 +312,7 @@
           },
         ],
         specs: [
-          ["사업명", "회천중앙역 파라곤", "대지위치", "양주 회천신도시 A10-1BL"],
+          ["사업명", "의정부역 해링턴플레이스", "대지위치", "양주 회천신도시 A10-1BL"],
           ["건축규모", "지하2층~지상29층, 8개동", "세대수", "총 845세대 (72㎡ / 84㎡ A,B)"],
         ],
         notes: [
@@ -322,9 +322,9 @@
         ],
       },
       location: {
-        title: "Paragon 입지환경",
+        title: "의정부역 해링턴플레이스 입지환경",
         subtitle: "회천신도시 최중심, 파라곤으로 빛나다!",
-        copy: "역·학·슬세권 완성의 결정판 회천중앙역 파라곤",
+        copy: "역·학·슬세권 완성의 결정판 의정부역 해링턴플레이스",
         copySub: "",
         image: "",
         canvasLayout: [
@@ -341,9 +341,9 @@
         ],
       },
       brand: {
-        title: "Paragon 브랜드소개",
+        title: "의정부역 해링턴플레이스 브랜드소개",
         subtitle: "한 차원 더 높은 생활의 가치와",
-        copy: "남다른 일상을 제안하는 Paragon",
+        copy: "남다른 일상을 제안하는 의정부역 해링턴플레이스",
         copySub: "",
         image: "",
         canvasLayout: [
@@ -353,9 +353,9 @@
         notes: [],
       },
       premium: {
-        title: "Paragon 프리미엄",
+        title: "의정부역 해링턴플레이스 프리미엄",
         subtitle: "더 가깝게! 더 빛나게!",
-        copy: "회천중앙역 파라곤에서 만나는 프리미엄8",
+        copy: "의정부역 해링턴플레이스에서 만나는 프리미엄6",
         copySub: "",
         image: "",
         canvasLayout: [
@@ -364,13 +364,12 @@
             columns: 2,
             className: "menupage-premium-grid",
             images: [
-              "../../../../new-assets/paragon/premium_p1%20(1).webp",
-              "../../../../new-assets/paragon/premium_p1%20(2).webp",
-              "../../../../new-assets/paragon/premium_p1%20(3).webp",
-              "../../../../new-assets/paragon/premium_p1%20(4).webp",
-              "../../../../new-assets/paragon/premium_p1%20(5).webp",
-              "../../../../new-assets/paragon/premium_p2%20(6).webp",
-              "../../../../new-assets/paragon/premium_p1%20(7).webp",
+              "../../../../new-assets/paragon/premium_p1%20(1).png?v=103EBDA9",
+              "../../../../new-assets/paragon/premium_p1%20(2).png?v=5616BF72",
+              "../../../../new-assets/paragon/premium_p1%20(3).png?v=E2848E60",
+              "../../../../new-assets/paragon/premium_p1%20(4).png?v=70FA6D52",
+              "../../../../new-assets/paragon/premium_p1%20(5).png?v=A4AD644A",
+              "../../../../new-assets/paragon/premium_p1%20(6).png?v=6BDB137A",
             ],
           },
         ],
@@ -380,7 +379,7 @@
         ],
       },
       default: {
-        title: "Paragon",
+        title: "의정부역 해링턴플레이스",
         subtitle: "프로젝트 정보",
         copy: "해당 메뉴의 상세 이미지를 이 영역에 배치합니다.",
         copySub: "",
@@ -393,7 +392,7 @@
       design: {
         subtitle: "단지설계",
         copy: "양주의 새로운 중심에서 만나는",
-        copySub: "Paragon의 프리미엄 라이프!",
+        copySub: "의정부역 해링턴플레이스의 프리미엄 라이프!",
         image: "../resources/images/complex guide1.jpg",
       },
       community: {
@@ -483,7 +482,7 @@
         ],
       },
       default: {
-        title: "Paragon",
+        title: "의정부역 해링턴플레이스",
         subtitle: "단지 안내",
         copy: "해당 메뉴의 상세 이미지를 이 영역에 배치합니다.",
         copySub: "",
@@ -494,7 +493,7 @@
     },
     type: {
       type: {
-        title: "Paragon",
+        title: "의정부역 해링턴플레이스",
         subtitle: "선호도 높은 72㎡·84㎡A·B 맞춤 평면",
         copy: "취향 따라 선택하는 완벽한 공간 구조!",
         copySub: "",
@@ -505,7 +504,7 @@
         ],
       },
       interior: {
-        title: "Paragon",
+        title: "의정부역 해링턴플레이스",
         subtitle: "6M 광폭거실이 주는 압도적인 개방감",
         copy: "명품 주거 파라곤의 감각적인 공간 미학!",
         copySub: "",
@@ -516,7 +515,7 @@
         ],
       },
       default: {
-        title: "Paragon",
+        title: "의정부역 해링턴플레이스",
         subtitle: "타입 안내",
         copy: "해당 메뉴의 상세 이미지를 이 영역에 배치합니다.",
         copySub: "",
@@ -527,7 +526,7 @@
     },
     route: {
       default: {
-        title: "Paragon",
+        title: "의정부역 해링턴플레이스",
         subtitle: "주거의 새로운 패러다임",
         copy: "합리적인 임대료로 10년까지 보장!",
         copySub: "",
