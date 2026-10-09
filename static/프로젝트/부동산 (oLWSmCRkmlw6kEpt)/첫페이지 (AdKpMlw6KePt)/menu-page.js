@@ -7,7 +7,7 @@
     window.__basicContentGuardInitialized = true;
     document.documentElement.classList.add("content-guard-on");
 
-    const editableSelector = "input, textarea, [contenteditable='true']";
+    const editableSelector = 'input, textarea, select, [contenteditable]:not([contenteditable="false"])';
     const isEditable = function(target) {
       return !!(target && target.closest && target.closest(editableSelector));
     };

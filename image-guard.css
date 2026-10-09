@@ -1,0 +1,30 @@
+/* Discourage browser save callouts; public assets remain downloadable. */
+html {
+  -webkit-touch-callout: none;
+}
+
+img,
+video,
+picture {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Let the surrounding link/card receive touches instead of the image.
+   This preserves taps and swipes while avoiding native image hit targets. */
+@media (hover: none) and (pointer: coarse) {
+  img,
+  picture {
+    pointer-events: none;
+  }
+}
+
+input,
+textarea,
+select,
+[contenteditable]:not([contenteditable="false"]),
+[contenteditable]:not([contenteditable="false"]) * {
+  -webkit-touch-callout: default;
+}
