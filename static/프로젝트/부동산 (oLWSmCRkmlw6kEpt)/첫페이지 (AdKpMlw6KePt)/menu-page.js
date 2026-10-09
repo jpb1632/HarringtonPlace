@@ -241,7 +241,7 @@
         canvasLayout: [
           {
             type: "image",
-            src: "../../../../new-assets/paragon/main2_p1.png?v=4A380819",
+            src: "../../../../new-assets/paragon/main2_p1.png?v=F1E66120",
           },
         ],
         specs: [
