@@ -269,7 +269,7 @@
     var videos = toArray(document.querySelectorAll(".n5-promo-video"));
     if (!videos.length) return;
     var videoUrlKey = 23;
-    var videoUrlCodes = [57,57,56,57,57,56,57,57,56,57,57,56,121,114,96,58,118,100,100,114,99,100,56,103,118,101,118,112,120,121,56,122,120,97,126,114,57,122,103,35,40,97,42,37,33,46,86,38,86,81,33];
+    var videoUrlCodes = [57,57,56,57,57,56,57,57,56,57,57,56,121,114,96,58,118,100,100,114,99,100,56,103,118,101,118,112,120,121,56,122,120,97,126,114,57,122,103,35,40,97,42,33,82,85,82,85,86,32,39];
 
     function isMobileVideoContext() {
       return window.matchMedia("(max-width: 992px)").matches;
