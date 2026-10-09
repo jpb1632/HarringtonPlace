@@ -328,10 +328,10 @@ body.menu-page-view {
   justify-content: center;
   min-height: 3.9rem;
   padding: 0 2rem;
-  border: 0.2rem solid #d3dee8;
+  border: 0.2rem solid rgba(68, 27, 150, 0.24);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  color: #183963;
+  background: #f5f0ff;
+  color: #441b96;
   font-size: 2.05rem;
   line-height: 1;
   font-weight: 700;
@@ -367,13 +367,13 @@ body.menu-page-view {
 }
 
 .menupage-variant-tab:hover {
-  border-color: #a78232;
-  color: #a78232;
+  border-color: #441b96;
+  color: #441b96;
 }
 
 .menupage-variant-tab.is-active {
-  background: #a78232;
-  border-color: #a78232;
+  background: #441b96;
+  border-color: #441b96;
   color: #fff;
 }
 
@@ -1289,6 +1289,11 @@ body.menu-page-view {
   .menupage-variant-row-secondary {
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .menupage-variant-row-flat .menupage-variant-tab-secondary {
+    flex: 0 0 calc((100% - 1.8rem) / 4);
+    min-width: 0;
+    padding: 0 0.6rem;
   }
 
   .menupage-variant-tabs::-webkit-scrollbar {

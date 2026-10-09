@@ -100,8 +100,6 @@
       tabs: [
         { key: "siteplan", label: "단지배치도" },
         { key: "unitplan", label: "동호수배치도" },
-        { key: "community", label: "커뮤니티" },
-        { key: "specialized", label: "특화설계" },
       ],
     },
     type: {
@@ -112,9 +110,9 @@
       ],
     },
     route: {
-      label: "공공지원 민간임대",
+      label: "층별안내",
       topIndex: 3,
-      tabs: [{ key: "directions", label: "공공지원 민간임대" }],
+      tabs: [{ key: "directions", label: "층별안내" }],
     },
   };
 
@@ -128,26 +126,21 @@
     return (TAB_ALIASES[group] && TAB_ALIASES[group][tab]) || tab;
   }
 
-  function fixSpecializedMenuLabels() {
-    document.querySelectorAll("a").forEach((link) => {
-      const href = link.getAttribute("href") || "";
-      if (href.includes("tab=concierge")) {
-        link.setAttribute("href", href.replace("tab=concierge", "tab=specialized"));
-      }
-
-      link.querySelectorAll("span").forEach((span) => {
-        if (span.textContent.trim() === "컨시어지") {
-          span.textContent = "특화설계";
-        }
-      });
+  function removeUnavailableMenuItems() {
+    Array.prototype.slice.call(document.querySelectorAll("a")).forEach(function (link) {
+      var href = link.getAttribute("href") || "";
+      if (!/[?&]tab=(community|specialized|concierge)(?:&|$)/.test(href)) return;
+      var item = link.closest("li");
+      if (item) item.remove();
+      else link.remove();
     });
   }
 
-  function watchSpecializedMenuLabels() {
-    fixSpecializedMenuLabels();
-    window.setTimeout(fixSpecializedMenuLabels, 80);
-    window.setTimeout(fixSpecializedMenuLabels, 300);
-    window.setTimeout(fixSpecializedMenuLabels, 1000);
+  function watchUnavailableMenuItems() {
+    removeUnavailableMenuItems();
+    window.setTimeout(removeUnavailableMenuItems, 80);
+    window.setTimeout(removeUnavailableMenuItems, 300);
+    window.setTimeout(removeUnavailableMenuItems, 1000);
 
     if (!window.MutationObserver || !document.body) return;
     let pending = false;
@@ -156,7 +149,7 @@
       pending = true;
       window.requestAnimationFrame(() => {
         pending = false;
-        fixSpecializedMenuLabels();
+        removeUnavailableMenuItems();
       });
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
@@ -170,9 +163,13 @@
           label: "타입",
           hidePrimary: true,
           items: [
-            { key: "72", label: "72", image: "../../../../new-assets/paragon/72_m_p1.webp" },
-            { key: "84a", label: "84A", image: "../../../../new-assets/paragon/84a_m_p1.webp" },
-            { key: "84b", label: "84B", image: "../../../../new-assets/paragon/84b_m_p1.webp" },
+            { key: "59", label: "59", image: "../../../../new-assets/paragon/59.png?v=F6835590" },
+            { key: "77", label: "77", image: "../../../../new-assets/paragon/77.png?v=7BE93F2D" },
+            { key: "84a", label: "84A", image: "../../../../new-assets/paragon/84a.png?v=0F90E2D8" },
+            { key: "84b", label: "84B", image: "../../../../new-assets/paragon/84b.png?v=011E3EBB" },
+            { key: "84c", label: "84C", image: "../../../../new-assets/paragon/84c.png?v=2AD3C819" },
+            { key: "134p", label: "134P", image: "../../../../new-assets/paragon/134p.png?v=A0EBFA19" },
+            { key: "136p", label: "136P", image: "../../../../new-assets/paragon/136p.png?v=67594A9A" },
           ],
         },
       ],
@@ -226,8 +223,8 @@
     business: {
       overview: {
         title: "의정부역 해링턴플레이스 사업개요",
-        subtitle: "가격에 놀라고 · 입지에 반하다",
-        copy: "생활·교통·문화 인프라를 누리는 프리미엄 중심 입지",
+        subtitle: "40층의 존재감, 새로운 주거의 시작",
+        copy: "지하 2층부터 지상 40층까지, 총 150세대로 구성된 주상복합",
         copySub: "",
         image: "",
         canvasLayout: [
@@ -237,8 +234,10 @@
           },
         ],
         specs: [
-          ["사업명", "의정부역 해링턴플레이스", "대지위치", "양주 회천신도시 A10-1BL"],
-          ["건축규모", "지하2층~지상29층, 8개동", "세대수", "총 845세대 (72㎡ / 84㎡ A,B)"],
+          ["사업명", "의정부시 의정부동 100-1, 2번지 주상복합 신축공사", "대지위치", "의정부시 의정부동 100-1, 100-2번지 일원"],
+          ["건축규모", "지하2층, 지상40층 / 150세대", "대지면적", "1,834.00㎡ (554.79평)"],
+          ["분양/준공", "24년06월 / 26년10월(예정)", "연면적", "28,560.39㎡ (8,639.51평)"],
+          ["주차대수", "아파트: 184대(법정: 170대) / 근생: 18대(법정: 12.1대)"],
         ],
         notes: [
           "본 홍보물에 사용된 CG 및 일러스트는 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있습니다.",
@@ -248,14 +247,14 @@
       },
       location: {
         title: "의정부역 해링턴플레이스 입지환경",
-        subtitle: "회천신도시 최중심, 파라곤으로 빛나다!",
-        copy: "역·학·슬세권 완성의 결정판 의정부역 해링턴플레이스",
+        subtitle: "의정부역 가까이, 생활의 중심을 누리다",
+        copy: "의정부역과 신세계백화점, 생활·문화 인프라를 가까이 누리는 입지",
         copySub: "",
         image: "",
         canvasLayout: [
           {
             type: "location-card",
-            mainImage: "../../../../new-assets/paragon/Location environment_1_p1.webp",
+            mainImage: "../../../../new-assets/paragon/0.png?v=4D9DFE6E",
           },
         ],
         specs: [],
@@ -279,8 +278,8 @@
       },
       premium: {
         title: "의정부역 해링턴플레이스 프리미엄",
-        subtitle: "더 가깝게! 더 빛나게!",
-        copy: "의정부역 해링턴플레이스에서 만나는 프리미엄6",
+        subtitle: "가까운 일상에 더하는 여섯 가지 가치",
+        copy: "교통부터 생활과 주거까지, 해링턴플레이스의 여섯 가지 프리미엄",
         copySub: "",
         image: "",
         canvasLayout: [
@@ -320,75 +319,28 @@
         copySub: "의정부역 해링턴플레이스의 프리미엄 라이프!",
         image: "../resources/images/complex guide1.jpg",
       },
-      community: {
-        subtitle: "골프·피트니스부터 북카페·어린이집까지",
-        copy: "단지 안에서 다 누리는 원스톱 고품격 인프라!",
-        copySub: "",
-        image: "",
-        canvasLayout: [
-          {
-            type: "stack",
-            className: "menupage-community-main menupage-community-stack",
-            images: [
-              "../../../../new-assets/paragon/community1_p1.webp",
-              "../../../../new-assets/paragon/community2_p1.webp",
-            ],
-          },
-          { type: "gap", size: "community" },
-          {
-            type: "row",
-            columns: 6,
-            className: "menupage-community-details-grid menupage-community-details-grid--paragon",
-            images: [
-              "../../../../new-assets/paragon/Community_Details_p1%20(1).webp",
-              "../../../../new-assets/paragon/Community_Details_p1%20(2).webp",
-              "../../../../new-assets/paragon/Community_Details_p2%20(3).webp",
-              "../../../../new-assets/paragon/Community_Details_p2%20(4).webp",
-              "../../../../new-assets/paragon/Community_Details_p2%20(5).webp",
-              "../../../../new-assets/paragon/Community_Details_p2%20(6).webp",
-              "../../../../new-assets/paragon/Community_Details_p2%20(7).webp",
-              "../../../../new-assets/paragon/Community_Details_p2%20(8).webp",
-            ],
-          },
-        ],
-        notes: [
-          "본 지면상의 단지배치도 및 CG 이미지는 소비자의 이해를 돕기 위해 제작한 것으로 실제와 차이가 있을 수 있으며, 향후 개발 계획 및 인·허가에 따라 변경될 수 있습니다.",
-        ],
-      },
       siteplan: {
-        subtitle: "전세대 남향 위주 배치와 덕계천 수변공원",
-        copy: "널찍한 동간거리! 넉넉한 조경공간!",
+        subtitle: "건물과 주변 공간을 한눈에",
+        copy: "건물 배치부터 출입구와 옥상정원까지, 단지의 공간 구성을 확인하세요",
         copySub: "",
         image: "",
         canvasLayout: [
-          { type: "image", src: "../../../../new-assets/paragon/complex arrangement_p1.webp" },
+          { type: "image", src: "../../../../new-assets/paragon/Site%20Layout.png?v=E198248C" },
         ],
         notes: [
           "본 지면상의 단지배치도 및 CG 이미지는 소비자의 이해를 돕기 위해 제작한 것으로 실제와 차이가 있을 수 있으며, 향후 개발 계획 및 인·허가에 따라 변경될 수 있습니다.",
         ],
       },
       unitplan: {
-        subtitle: "총 845세대 선호도 높은 중소형 단지",
-        copy: "파라곤이 선보이는 프리미엄 주거 트렌드!",
+        subtitle: "150세대, 나에게 맞는 위치를 찾다",
+        copy: "층별·호수별 위치와 타입 구성을 한눈에 확인하는 배치 안내",
         copySub: "",
         image: "",
         canvasLayout: [
-          { type: "image", src: "../../../../new-assets/paragon/number arrangement_p1.webp" },
+          { type: "image", src: "../../../../new-assets/paragon/Number%20of%20Rooms.png?v=036FB44E" },
         ],
         notes: [
           "본 지면 상의 동호 배치도 등은 소비자의 이해를 돕기 위한 이미지 컷으로 실제 시공 시 다소 차이가 있을 수 있으며, 향후 개발 계획 및 인·허가에 따라 변경될 수 있습니다.",
-        ],
-      },
-      specialized: {
-        subtitle: "6M 광폭거실과 현관 앞 공용창고",
-        copy: "공간을 넓히고 주거 품격을 더하다!",
-        copySub: "",
-        image: "",
-        canvasLayout: [
-          { type: "image", src: "../../../../new-assets/paragon/Specialized design_p1.webp", className: "menupage-specialized-section" },
-        ],
-        notes: [
-          "본 이미지는 소비자의 이해를 돕기 위한 이미지로 실제 시공 시 다소 차이가 있을 수 있으며, 인·허가 및 현장 여건에 따라 변경될 수 있습니다.",
         ],
       },
       hsystem: {
@@ -419,8 +371,8 @@
     type: {
       type: {
         title: "의정부역 해링턴플레이스",
-        subtitle: "선호도 높은 72㎡·84㎡A·B 맞춤 평면",
-        copy: "취향 따라 선택하는 완벽한 공간 구조!",
+        subtitle: "취향과 생활에 맞춘 다양한 공간",
+        copy: "다양한 면적과 평면 구성으로 나에게 어울리는 주거 공간을 만나보세요",
         copySub: "",
         image: "",
         specs: [],
@@ -441,8 +393,8 @@
     route: {
       default: {
         title: "의정부역 해링턴플레이스",
-        subtitle: "주거의 새로운 패러다임",
-        copy: "합리적인 임대료로 10년까지 보장!",
+        subtitle: "40층까지 이어지는 건물의 공간 구성",
+        copy: "근린생활시설과 주차장부터 주거 공간까지, 층별 구성을 확인하세요",
         copySub: "",
         image: "../resources/images/m1.png",
         specs: [],
@@ -1517,7 +1469,7 @@
 
   function initMenuPage() {
     initBasicContentGuard();
-    watchSpecializedMenuLabels();
+    watchUnavailableMenuItems();
 
     const { group, tab, variant } = getStateFromUrl();
     runPage(group, tab, variant);

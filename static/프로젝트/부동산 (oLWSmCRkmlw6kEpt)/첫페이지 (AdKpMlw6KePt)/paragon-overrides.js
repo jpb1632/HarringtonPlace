@@ -7,26 +7,21 @@
     return Array.prototype.slice.call(list || []);
   }
 
-  function fixSpecializedMenuLabels() {
-    toArray(document.querySelectorAll("a")).forEach(function (link) {
+  function removeUnavailableMenuItems() {
+    Array.prototype.slice.call(document.querySelectorAll("a")).forEach(function (link) {
       var href = link.getAttribute("href") || "";
-      if (href.indexOf("tab=concierge") !== -1) {
-        link.setAttribute("href", href.replace("tab=concierge", "tab=specialized"));
-      }
-
-      toArray(link.querySelectorAll("span")).forEach(function (span) {
-        if (span.textContent.trim() === "컨시어지") {
-          span.textContent = "특화설계";
-        }
-      });
+      if (!/[?&]tab=(community|specialized|concierge)(?:&|$)/.test(href)) return;
+      var item = link.closest("li");
+      if (item) item.remove();
+      else link.remove();
     });
   }
 
-  function watchSpecializedMenuLabels() {
-    fixSpecializedMenuLabels();
-    window.setTimeout(fixSpecializedMenuLabels, 80);
-    window.setTimeout(fixSpecializedMenuLabels, 300);
-    window.setTimeout(fixSpecializedMenuLabels, 1000);
+  function watchUnavailableMenuItems() {
+    removeUnavailableMenuItems();
+    window.setTimeout(removeUnavailableMenuItems, 80);
+    window.setTimeout(removeUnavailableMenuItems, 300);
+    window.setTimeout(removeUnavailableMenuItems, 1000);
 
     if (!window.MutationObserver || !document.body) return;
     var pending = false;
@@ -35,7 +30,7 @@
       pending = true;
       window.requestAnimationFrame(function () {
         pending = false;
-        fixSpecializedMenuLabels();
+        removeUnavailableMenuItems();
       });
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
@@ -557,14 +552,14 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
-      watchSpecializedMenuLabels();
+      watchUnavailableMenuItems();
       initUnitTypes();
       initPromoVideoAutoplay();
       initConsultationDeepLink();
       initCallInquiryFeedback();
     });
   } else {
-    watchSpecializedMenuLabels();
+    watchUnavailableMenuItems();
     initUnitTypes();
     initPromoVideoAutoplay();
     initConsultationDeepLink();
