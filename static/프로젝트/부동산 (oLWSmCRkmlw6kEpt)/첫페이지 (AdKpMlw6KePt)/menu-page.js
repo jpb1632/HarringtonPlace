@@ -109,7 +109,6 @@
       topIndex: 2,
       tabs: [
         { key: "type", label: "타입안내" },
-        { key: "interior", label: "인테리어" },
       ],
     },
     route: {
@@ -174,80 +173,6 @@
             { key: "72", label: "72", image: "../../../../new-assets/paragon/72_m_p1.webp" },
             { key: "84a", label: "84A", image: "../../../../new-assets/paragon/84a_m_p1.webp" },
             { key: "84b", label: "84B", image: "../../../../new-assets/paragon/84b_m_p1.webp" },
-          ],
-        },
-      ],
-    },
-    interior: {
-      groups: [
-        {
-          key: "interior",
-          label: "인테리어",
-          hidePrimary: true,
-          items: [
-            {
-              key: "72",
-              label: "72",
-              canvasLayout: [
-                { type: "image", src: "../../../../new-assets/paragon/72_1.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/72_2.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/72_3.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/72_4.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/72_5.webp", className: "menupage-interior-single" },
-                {
-                  type: "row",
-                  columns: 3,
-                  className: "menupage-interior-triplet",
-                  images: [
-                    "../../../../new-assets/paragon/72_6.webp",
-                    "../../../../new-assets/paragon/72_7.webp",
-                    "../../../../new-assets/paragon/72_8.webp",
-                  ],
-                },
-              ],
-            },
-            {
-              key: "84a",
-              label: "84A",
-              canvasLayout: [
-                { type: "image", src: "../../../../new-assets/paragon/84a_1.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84a_2.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84a_3.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84a_4.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84a_5.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84a_6.webp", className: "menupage-interior-single" },
-                {
-                  type: "row",
-                  columns: 2,
-                  className: "menupage-interior-pair",
-                  images: [
-                    "../../../../new-assets/paragon/84a_7.webp",
-                    "../../../../new-assets/paragon/84a_8.webp",
-                  ],
-                },
-              ],
-            },
-            {
-              key: "84b",
-              label: "84B",
-              canvasLayout: [
-                { type: "image", src: "../../../../new-assets/paragon/84b_1.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84b_2.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84b_3.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84b_4.webp", className: "menupage-interior-single" },
-                { type: "image", src: "../../../../new-assets/paragon/84b_5.webp", className: "menupage-interior-single" },
-                {
-                  type: "row",
-                  columns: 3,
-                  className: "menupage-interior-triplet",
-                  images: [
-                    "../../../../new-assets/paragon/84b_6.webp",
-                    "../../../../new-assets/paragon/84b_7.webp",
-                    "../../../../new-assets/paragon/84b_8.webp",
-                  ],
-                },
-              ],
-            },
           ],
         },
       ],
@@ -501,17 +426,6 @@
         specs: [],
         notes: [
           "본 평면도는 소비자의 이해를 돕기 위해 제작된 것으로 외곽라인, 내부 레이아웃, 인테리어 마감, 내부 디테일, 가구 디자인 등 세부사항은 변경될 수 있으니, 자세한 사항은 견본주택에 문의하시어 계약 등에 착오 없으시기 바랍니다.",
-        ],
-      },
-      interior: {
-        title: "의정부역 해링턴플레이스",
-        subtitle: "6M 광폭거실이 주는 압도적인 개방감",
-        copy: "명품 주거 파라곤의 감각적인 공간 미학!",
-        copySub: "",
-        image: "",
-        specs: [],
-        notes: [
-          "본 지면 상의 사진은 사이버 모델하우스 및 견본주택 오픈일 이전에 촬영한 것으로, 기본 마감재 이외의 옵션 및 견본주택 연출을 위한 상품이 포함되어 있으며, 마감재 색상 및 사항은 실제와 상이할 수 있으니 반드시 견본주택에서 확인하시기 바랍니다.",
         ],
       },
       default: {

@@ -103,12 +103,12 @@ body.menu-page-view {
 }
 
 .menupage-tab:hover {
-  color: #a78232;
+  color: #441b96;
 }
 
 .menupage-tab.is-active {
-  color: #a78232;
-  border-color: #a78232;
+  color: #441b96;
+  border-color: #441b96;
   font-weight: 800;
 }
 
@@ -130,8 +130,8 @@ body.menu-page-view {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 4rem;
   align-items: stretch;
-  padding-top: 2.4rem;
-  padding-bottom: 2.4rem;
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
   border-bottom: 1px solid #d4dbe7;
 }
 
@@ -144,6 +144,10 @@ body.menu-page-view {
 }
 
 .menupage-content-title {
+  position: relative;
+  overflow: hidden;
+  width: min(30.17rem, 82.61%);
+  aspect-ratio: 1672 / 506;
   margin: 0;
   text-align: center;
   font-size: 4.6rem;
@@ -157,18 +161,21 @@ body.menu-page-view {
 }
 
 .menupage-content-title-logo {
+  position: absolute;
+  top: -51.38%;
+  left: 0;
   display: block;
-  width: min(33.6rem, 92%);
+  width: 100%;
   height: auto;
-  transform: scale(1.726725);
 }
 
 .menupage-content-lead {
   min-width: 0;
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2.2rem 2.6rem;
+  padding: 2.6rem 2.6rem;
   border: 1px solid #d7deea;
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.9);
@@ -816,13 +823,13 @@ body.menu-page-view {
   .menu-page-view .properties-N1,
   .menu-page-view .properties-N1.header-top-active,
   .menu-page-view .properties-N1.header-top-active:hover {
-    background: #000 !important;
+    background: #441b96 !important;
     border-top: 0 !important;
     box-shadow: none !important;
   }
 
   .menu-page-view .properties-N1 .header-container {
-    background: #000 !important;
+    background: #441b96 !important;
     border-bottom: 0 !important;
   }
 
@@ -937,7 +944,7 @@ body.menu-page-view {
   .menu-page-view .properties-N1,
   .menu-page-view .properties-N1.header-top-active,
   .menu-page-view .properties-N1.header-top-active:hover {
-    background: #000 !important;
+    background: #441b96 !important;
     border-top: 0 !important;
     box-shadow: none !important;
   }
@@ -947,7 +954,7 @@ body.menu-page-view {
   }
 
   .menu-page-view .properties-N1 .header-container {
-    background: #000 !important;
+    background: #441b96 !important;
     overflow: visible;
     padding-right: 0.4rem;
   }
@@ -1129,8 +1136,8 @@ body.menu-page-view {
   .menupage-content-head {
     grid-template-columns: 1fr;
     gap: 1.4rem;
-    padding-top: 1.8rem;
-    padding-bottom: 1.8rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
   }
 
   .menupage-content-title-wrap {
@@ -1145,15 +1152,12 @@ body.menu-page-view {
   }
 
   .menupage-content-title {
+    width: min(21.55rem, 82.61%);
     font-size: 3.1rem;
   }
 
-  .menupage-content-title-logo {
-    width: min(24rem, 92%);
-  }
-
   .menupage-content-lead {
-    padding: 1.6rem 1.8rem;
+    padding: 2.2rem 1.8rem;
   }
 
   .menupage-content-subtitle {

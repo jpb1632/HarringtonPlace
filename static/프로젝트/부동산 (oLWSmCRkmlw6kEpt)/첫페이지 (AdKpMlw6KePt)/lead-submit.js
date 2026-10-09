@@ -82,7 +82,127 @@
   }
 
   function focusField(field) {
-    if (field && typeof field.focus === "function") field.focus();
+    if (!field) return;
+    var customTrigger = field.parentElement && qs(".n9-select-trigger", field.parentElement);
+    if (customTrigger && window.getComputedStyle(field).display === "none") {
+      customTrigger.focus();
+    } else if (typeof field.focus === "function") {
+      field.focus();
+    }
+  }
+
+  function enhanceMobileSelect(select) {
+    if (!select || !select.parentElement) return;
+
+    var inputset = select.parentElement;
+    var label = qs("label[for='" + select.id + "']");
+    var choices = Array.prototype.slice.call(select.options).filter(function (option) {
+      return !option.disabled && option.value;
+    });
+    var root = document.createElement("div");
+    var trigger = document.createElement("button");
+    var list = document.createElement("div");
+    var items = [];
+
+    root.className = "n9-custom-select";
+    trigger.type = "button";
+    trigger.className = "n9-select-trigger";
+    trigger.setAttribute("aria-haspopup", "listbox");
+    trigger.setAttribute("aria-expanded", "false");
+    trigger.setAttribute("aria-controls", select.id + "-options");
+    list.className = "n9-select-options";
+    list.id = select.id + "-options";
+    list.setAttribute("role", "listbox");
+    list.setAttribute("aria-label", label ? label.textContent.trim() : select.name);
+    list.hidden = true;
+
+    function sync() {
+      var selected = select.options[select.selectedIndex];
+      var text = selected ? selected.textContent : "선택해 주세요";
+      trigger.textContent = text;
+      trigger.classList.toggle("is-placeholder", !select.value);
+      trigger.setAttribute("aria-label", (label ? label.textContent.trim() : select.name) + ": " + text);
+      items.forEach(function (item) {
+        item.setAttribute("aria-selected", item.dataset.value === select.value ? "true" : "false");
+      });
+    }
+
+    function close(focusTrigger) {
+      list.hidden = true;
+      root.classList.remove("is-open");
+      trigger.setAttribute("aria-expanded", "false");
+      if (focusTrigger) trigger.focus();
+    }
+
+    function focusOption(index) {
+      if (items.length) items[Math.max(0, Math.min(index, items.length - 1))].focus();
+    }
+
+    function open() {
+      list.hidden = false;
+      root.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
+      var selectedIndex = choices.findIndex(function (option) { return option.value === select.value; });
+      focusOption(selectedIndex < 0 ? 0 : selectedIndex);
+    }
+
+    function choose(item) {
+      select.value = item.dataset.value;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+      close(true);
+    }
+
+    choices.forEach(function (option) {
+      var item = document.createElement("div");
+      item.className = "n9-select-option";
+      item.setAttribute("role", "option");
+      item.setAttribute("tabindex", "-1");
+      item.dataset.value = option.value;
+      item.textContent = option.textContent;
+      item.addEventListener("click", function () { choose(item); });
+      list.appendChild(item);
+      items.push(item);
+    });
+
+    trigger.addEventListener("click", function () {
+      if (list.hidden) open();
+      else close(false);
+    });
+    root.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !list.hidden) {
+        event.preventDefault();
+        close(true);
+      } else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        if (list.hidden) {
+          open();
+        } else {
+          var index = items.indexOf(document.activeElement);
+          if (event.key === "Home") focusOption(0);
+          else if (event.key === "End") focusOption(items.length - 1);
+          else focusOption(index + (event.key === "ArrowDown" ? 1 : -1));
+        }
+      } else if ((event.key === "Enter" || event.key === " ") && items.indexOf(document.activeElement) !== -1) {
+        event.preventDefault();
+        choose(document.activeElement);
+      } else if (event.key === "Tab") {
+        close(false);
+      }
+    });
+    document.addEventListener("pointerdown", function (event) {
+      if (!root.contains(event.target)) close(false);
+    });
+    window.addEventListener("resize", function () {
+      if (!window.matchMedia("(max-width: 992px)").matches) close(false);
+    });
+    select.addEventListener("change", sync);
+    if (select.form) select.form.addEventListener("reset", function () { window.setTimeout(sync, 0); });
+
+    root.appendChild(trigger);
+    root.appendChild(list);
+    inputset.appendChild(root);
+    inputset.classList.add("n9-select-enhanced");
+    sync();
   }
 
   function mapServerMessage(code) {
@@ -183,6 +303,9 @@
     var agreeInput = qs("#checkset-properties-N9-b-1", form);
     var submitBtn = qs("button[type='submit']", form);
     var honeypotInput = qs("#consult-honeypot");
+
+    enhanceMobileSelect(visitTimeInput);
+    enhanceMobileSelect(visitorsInput);
 
     if (nameInput) {
       var composing = false;
