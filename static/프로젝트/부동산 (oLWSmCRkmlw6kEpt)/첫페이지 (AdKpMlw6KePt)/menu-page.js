@@ -100,6 +100,7 @@
       tabs: [
         { key: "siteplan", label: "단지배치도" },
         { key: "unitplan", label: "동호수배치도" },
+        { key: "floors", label: "층별안내" },
       ],
     },
     type: {
@@ -111,7 +112,7 @@
     },
     route: {
       label: "층별안내",
-      topIndex: 3,
+      topIndex: 1,
       tabs: [{ key: "directions", label: "층별안내" }],
     },
   };
@@ -126,7 +127,25 @@
     return (TAB_ALIASES[group] && TAB_ALIASES[group][tab]) || tab;
   }
 
+  function ensureFloorGuideMenu() {
+    document.querySelectorAll(".header-sublist, .fullmenu-sublist").forEach(function (list) {
+      if (!list.querySelector('a[href*="group=complex"]') || list.querySelector('a[href*="tab=floors"]')) return;
+      var full = list.classList.contains("fullmenu-sublist");
+      var item = document.createElement("li");
+      item.className = full ? "fullmenu-subitem" : "header-subitem";
+      var link = document.createElement("a");
+      link.className = full ? "p1 fullmenu-sublink" : "p2 header-sublink";
+      link.href = "./menu-page.html?v=20261009-release&group=complex&tab=floors";
+      var text = document.createElement("span");
+      text.textContent = "층별안내";
+      link.appendChild(text);
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+  }
+
   function removeUnavailableMenuItems() {
+    ensureFloorGuideMenu();
     Array.prototype.slice.call(document.querySelectorAll("a")).forEach(function (link) {
       var href = link.getAttribute("href") || "";
       if (!/[?&]tab=(community|specialized|concierge)(?:&|$)/.test(href)) return;
@@ -209,14 +228,6 @@
     );
   }
 
-  const ROUTE_ROUGHMAP = {
-    timestamp: "1772015268708",
-    key: "ibxtfyhijsi",
-    desktopHeight: 460,
-    mobileHeight: 360,
-  };
-
-  let roughmapLoaderPromise = null;
   let mobileLayoutGuardBound = false;
 
   const CONTENT_CONFIG = {
@@ -264,18 +275,6 @@
           "단지 인근의 각종 개발계획 및 도로 등의 기반시설은 인·허가나 정부 시책에 따라 변경 및 취소 가능한 바, 해당 인·허가청 및 현장에서 확인하시기 바라며 시행사 및 시공사와 무관합니다.",
         ],
       },
-      brand: {
-        title: "의정부역 해링턴플레이스 브랜드소개",
-        subtitle: "한 차원 더 높은 생활의 가치와",
-        copy: "남다른 일상을 제안하는 의정부역 해링턴플레이스",
-        copySub: "",
-        image: "",
-        canvasLayout: [
-          { type: "image", src: "../../../../new-assets/menu/brand_h1.png" },
-        ],
-        specs: [],
-        notes: [],
-      },
       premium: {
         title: "의정부역 해링턴플레이스 프리미엄",
         subtitle: "가까운 일상에 더하는 여섯 가지 가치",
@@ -313,12 +312,6 @@
       },
     },
     complex: {
-      design: {
-        subtitle: "단지설계",
-        copy: "양주의 새로운 중심에서 만나는",
-        copySub: "의정부역 해링턴플레이스의 프리미엄 라이프!",
-        image: "../resources/images/complex guide1.jpg",
-      },
       siteplan: {
         subtitle: "건물과 주변 공간을 한눈에",
         copy: "건물 배치부터 출입구와 옥상정원까지, 단지의 공간 구성을 확인하세요",
@@ -341,21 +334,6 @@
         ],
         notes: [
           "본 지면 상의 동호 배치도 등은 소비자의 이해를 돕기 위한 이미지 컷으로 실제 시공 시 다소 차이가 있을 수 있으며, 향후 개발 계획 및 인·허가에 따라 변경될 수 있습니다.",
-        ],
-      },
-      hsystem: {
-        subtitle: "트렌드를 리드하는 현대건설",
-        copy: "고객이 가장 살고 싶은 집을 설계합니다.",
-        copySub: "",
-        image: "",
-        canvasLayout: [
-          {
-            type: "stack",
-            images: [
-              "../../../../new-assets/inter-floor_noise_h2.png",
-              "../../../../new-assets/mobile/Hservice_h1.jpg",
-            ],
-          },
         ],
       },
       default: {
@@ -396,12 +374,15 @@
         subtitle: "40층까지 이어지는 건물의 공간 구성",
         copy: "근린생활시설과 주차장부터 주거 공간까지, 층별 구성을 확인하세요",
         copySub: "",
-        image: "../resources/images/m1.png",
+        image: "../../../../new-assets/paragon/5.png?v=006C37C9",
         specs: [],
         notes: [],
       },
     },
   };
+
+  // 이전 route/directions 주소도 같은 층별안내 자료를 사용한다.
+  CONTENT_CONFIG.complex.floors = CONTENT_CONFIG.route.default;
 
   function escapeHtml(value) {
     return String(value || "")
@@ -729,152 +710,6 @@
     }
   }
 
-  function ensureRoughmapLoader() {
-    if (
-      window.daum &&
-      window.daum.roughmap &&
-      typeof window.daum.roughmap.Lander === "function"
-    ) {
-      return Promise.resolve();
-    }
-
-    if (roughmapLoaderPromise) return roughmapLoaderPromise;
-
-    roughmapLoaderPromise = new Promise((resolve, reject) => {
-      const protocol = window.location.protocol === "https:" ? "https:" : "http:";
-      const cdnDomain = "//t1.daumcdn.net";
-      const phase = "prod";
-      const cdn = "20250630";
-
-      window.daum = window.daum || {};
-      window.daum.roughmap = window.daum.roughmap || {
-        phase,
-        cdn,
-        URL_KEY_DATA_LOAD_PRE: `${protocol}${cdnDomain}/roughmap/`,
-        url_protocal: protocol,
-        url_cdn_domain: cdnDomain,
-      };
-
-      const scriptSrc = `${protocol}//t1.daumcdn.net/kakaomapweb/roughmap/place/${phase}/${cdn}/roughmapLander.js`;
-      const checkReady = () => {
-        if (
-          window.daum &&
-          window.daum.roughmap &&
-          typeof window.daum.roughmap.Lander === "function"
-        ) {
-          resolve();
-        } else {
-          reject(new Error("카카오 지도 스크립트 초기화에 실패했습니다."));
-        }
-      };
-
-      let script = document.querySelector("script[data-roughmap-lander='true']");
-      if (!script) {
-        script = document.createElement("script");
-        script.charset = "UTF-8";
-        script.src = scriptSrc;
-        script.setAttribute("data-roughmap-lander", "true");
-        script.onload = () => checkReady();
-        script.onerror = () =>
-          reject(new Error("카카오 지도 스크립트를 불러오지 못했습니다."));
-        document.head.appendChild(script);
-      } else {
-        // 이미 로드된 경우 즉시 상태 확인
-        setTimeout(checkReady, 0);
-      }
-    });
-
-    return roughmapLoaderPromise;
-  }
-
-  function teardownRouteMap(canvasEl) {
-    if (!canvasEl) return;
-    canvasEl.classList.remove("has-route-map");
-    const mapWrap = canvasEl.querySelector(".menupage-route-map-wrap");
-    if (mapWrap) mapWrap.remove();
-  }
-
-  function renderRouteRoughMap(canvasEl, imageEl, placeholderEl, imageAlt) {
-    if (!canvasEl || !imageEl || !placeholderEl) return;
-
-    imageEl.hidden = true;
-    imageEl.removeAttribute("src");
-    placeholderEl.hidden = true;
-    canvasEl.classList.remove("has-image");
-    canvasEl.classList.add("has-route-map");
-
-    const existingWrap = canvasEl.querySelector(".menupage-route-map-wrap");
-    if (existingWrap) existingWrap.remove();
-
-    const mapWrap = document.createElement("div");
-    mapWrap.className = "menupage-route-map-wrap";
-
-    const mapNode = document.createElement("div");
-    mapNode.id = `daumRoughmapContainer${ROUTE_ROUGHMAP.timestamp}`;
-    mapNode.className = "root_daum_roughmap root_daum_roughmap_landing menupage-route-map-node";
-    mapNode.setAttribute("aria-label", imageAlt || "공공지원 민간임대 안내 지도");
-    mapWrap.appendChild(mapNode);
-
-    const mapInfo = document.createElement("div");
-    mapInfo.className = "menupage-route-map-info";
-
-    const addressRow = document.createElement("p");
-    addressRow.className = "menupage-route-map-info-row is-address";
-    addressRow.innerHTML =
-      '<span class="menupage-route-map-info-icon is-map" aria-hidden="true"></span><span class="menupage-route-map-info-text"><span class="menupage-route-map-info-label">현장 주소 :</span> 경기도 양주시 백석읍 복지리 279-1 일원(양주 복지지구 80BL)</span>';
-
-    const showroomRow = document.createElement("p");
-    showroomRow.className = "menupage-route-map-info-row is-showroom";
-    showroomRow.innerHTML =
-      '<span class="menupage-route-map-info-icon is-home" aria-hidden="true"></span><span class="menupage-route-map-info-text"><span class="menupage-route-map-info-label">모델하우스 :</span> 방문예약 또는 전화주시면 문자로 안내해 드립니다.</span>';
-
-    const inquiryRow = document.createElement("p");
-    inquiryRow.className = "menupage-route-map-info-row is-inquiry";
-    inquiryRow.innerHTML =
-      '<span class="menupage-route-map-info-icon is-phone" aria-hidden="true"></span><span class="menupage-route-map-info-text"><span class="menupage-route-map-info-label">분양문의 :</span> 1688-4008</span>';
-
-    mapInfo.appendChild(addressRow);
-    mapInfo.appendChild(showroomRow);
-    mapInfo.appendChild(inquiryRow);
-    mapWrap.appendChild(mapInfo);
-    canvasEl.appendChild(mapWrap);
-
-    const canvasWidth =
-      Math.floor(canvasEl.getBoundingClientRect().width) || canvasEl.clientWidth || 640;
-    const mapWidth = Math.max(320, canvasWidth);
-    const mapHeight =
-      window.innerWidth <= 992
-        ? ROUTE_ROUGHMAP.mobileHeight
-        : ROUTE_ROUGHMAP.desktopHeight;
-
-    ensureRoughmapLoader()
-      .then(() => {
-        if (
-          !window.daum ||
-          !window.daum.roughmap ||
-          typeof window.daum.roughmap.Lander !== "function"
-        ) {
-          throw new Error("카카오 지도 객체가 초기화되지 않았습니다.");
-        }
-        if (!document.getElementById(`daumRoughmapContainer${ROUTE_ROUGHMAP.timestamp}`)) {
-          return;
-        }
-
-        new window.daum.roughmap.Lander({
-          timestamp: ROUTE_ROUGHMAP.timestamp,
-          key: ROUTE_ROUGHMAP.key,
-          mapWidth: String(mapWidth),
-          mapHeight: String(mapHeight),
-        }).render();
-      })
-      .catch(() => {
-        // 지도 로딩 실패 시 기본 플레이스홀더를 다시 보여준다.
-        teardownRouteMap(canvasEl);
-        placeholderEl.hidden = false;
-        placeholderEl.querySelector("strong").textContent = "지도를 불러오지 못했습니다.";
-      });
-  }
-
   function playCanvasSwapAnimation(canvasEl) {
     if (!canvasEl) return;
     canvasEl.classList.remove("menupage-swap-up");
@@ -1183,7 +1018,6 @@
       }
     }
 
-    teardownRouteMap(canvasEl);
     setCanvasImage(
       canvasEl,
       imageEl,

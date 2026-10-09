@@ -7,7 +7,25 @@
     return Array.prototype.slice.call(list || []);
   }
 
+  function ensureFloorGuideMenu() {
+    document.querySelectorAll(".header-sublist, .fullmenu-sublist").forEach(function (list) {
+      if (!list.querySelector('a[href*="group=complex"]') || list.querySelector('a[href*="tab=floors"]')) return;
+      var full = list.classList.contains("fullmenu-sublist");
+      var item = document.createElement("li");
+      item.className = full ? "fullmenu-subitem" : "header-subitem";
+      var link = document.createElement("a");
+      link.className = full ? "p1 fullmenu-sublink" : "p2 header-sublink";
+      link.href = "./menu-page.html?v=20261009-release&group=complex&tab=floors";
+      var text = document.createElement("span");
+      text.textContent = "층별안내";
+      link.appendChild(text);
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+  }
+
   function removeUnavailableMenuItems() {
+    ensureFloorGuideMenu();
     Array.prototype.slice.call(document.querySelectorAll("a")).forEach(function (link) {
       var href = link.getAttribute("href") || "";
       if (!/[?&]tab=(community|specialized|concierge)(?:&|$)/.test(href)) return;

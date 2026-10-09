@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "cli.js",
   "scripts": {
+    "build:deploy": "node scripts/build-deploy.mjs",
     "login": "node cli.js login",
     "pull": "node cli.js pull",
     "push": "node cli.js push",
