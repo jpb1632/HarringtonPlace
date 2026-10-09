@@ -332,6 +332,19 @@
 
     if (visitDateInput) {
       visitDateInput.setAttribute("min", getTodayString());
+      var dateField = visitDateInput.closest(".n9-date-field");
+      if (dateField) {
+        var syncDateDisplay = function () {
+          dateField.classList.toggle("has-value", !!visitDateInput.value);
+        };
+        visitDateInput.addEventListener("input", syncDateDisplay);
+        visitDateInput.addEventListener("change", syncDateDisplay);
+        form.addEventListener("reset", function () {
+          window.setTimeout(syncDateDisplay, 0);
+        });
+        window.addEventListener("pageshow", syncDateDisplay);
+        syncDateDisplay();
+      }
     }
 
     document.addEventListener(

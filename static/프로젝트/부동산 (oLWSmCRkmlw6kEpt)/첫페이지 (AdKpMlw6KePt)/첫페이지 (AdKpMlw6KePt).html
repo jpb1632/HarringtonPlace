@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../resources/css/plugin.css" />
   <link rel="stylesheet" href="../resources/css/setting.css" />
   <link rel="stylesheet" href="../resources/css/templatehouse.css" />
-  <link rel="stylesheet" href="./style.css?v=20261009-purple-unit-tabs" />
+  <link rel="stylesheet" href="./style.css?v=20261010-mobile-hero-up20" />
   <link rel="preload" as="image" href="../../../../new-assets/paragon/main1_p1.png" type="image/png" fetchpriority="high" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFT94RQG91"></script>
@@ -480,7 +480,10 @@
             <div class="inputset">
               <label for="properties-N9-inputset-a-3" class="form-tit">방문날짜 <span>*</span>
               </label>
-              <input id="properties-N9-inputset-a-3" type="date" name="방문날짜" class="inputset-input form-control" required="">
+              <div class="n9-date-field">
+                <input id="properties-N9-inputset-a-3" type="date" name="방문날짜" class="inputset-input form-control" required="">
+                <span class="n9-date-placeholder" aria-hidden="true">방문날짜 선택</span>
+              </div>
             </div>
           </div>
           <div class="form-box">
@@ -489,6 +492,7 @@
               </label>
               <select id="properties-N9-inputset-a-4" name="방문시간" class="inputset-input form-control n9-select-control" required="">
                 <option value="" disabled selected>방문시간 선택</option>
+                <option value="10시 이전">10시 이전</option>
                 <option value="10:00">10:00</option>
                 <option value="11:00">11:00</option>
                 <option value="12:00">12:00</option>
@@ -647,8 +651,8 @@
   <script src="../resources/js/setting.js"></script>
   <script src="../resources/js/templatehouse.js"></script>
   <script src="./style.js"></script>
-  <script src="./paragon-overrides.js?v=20261009-release"></script>
+  <script src="./paragon-overrides.js?v=20261010-mobile-release"></script>
   <script src="./google-ads-conversion.js?v=20261005-call1"></script>
-  <script src="./lead-submit.js?v=20261008-mobile-select"></script>
+  <script src="./lead-submit.js?v=20261010-mobile-date"></script>
 </body>
 </html>
