@@ -1299,6 +1299,14 @@ to {
     transform: scale(1.075) translate3d(-1.4%, 0.85%, 0)
  }
 }
+@keyframes n4-hero-mobile-pan {
+from {
+    transform: translate3d(4%, 0, 0) scale(1.12)
+ }
+to {
+    transform: translate3d(-4%, -1.2%, 0) scale(1.20)
+ }
+}
 @media (max-width: 992px) {
 .properties-N4 .hero-slider {
     inset: 0 0 auto 0;
@@ -1308,7 +1316,8 @@ to {
     min-height: calc(100vw * 2520 / 1620)
  }
 .properties-N4 .hero-slide {
-    transform: scale(1.06)
+    transform: scale(1);
+    transition: opacity 1.45s cubic-bezier(0.4, 0, 0.2, 1)
  }
 .properties-N4 .hero-slide.is-active {
     transform: scale(1)
@@ -1316,7 +1325,13 @@ to {
 .properties-N4 .hero-slide img {
     object-fit: cover;
     object-position: center top;
-    animation-duration: 8s
+    animation-name: n4-hero-mobile-pan;
+    animation-duration: 12s;
+    animation-timing-function: linear;
+    transform-origin: center center
+ }
+.properties-N4 .hero-slide + .hero-slide img {
+    animation-direction: alternate-reverse
  }
 .properties-N4 .hero-controls {
     bottom: 2.4rem;
