@@ -334,6 +334,22 @@
       visitDateInput.setAttribute("min", getTodayString());
       var dateField = visitDateInput.closest(".n9-date-field");
       if (dateField) {
+        dateField.addEventListener("click", function (event) {
+          if (!window.matchMedia("(max-width: 992px)").matches ||
+              visitDateInput.disabled || visitDateInput.readOnly) return;
+          // Open synchronously from the tap, including the text and icon area.
+          // Keep the native click behavior when this WebView cannot showPicker.
+          if (typeof visitDateInput.showPicker === "function") {
+            try {
+              visitDateInput.showPicker();
+              event.preventDefault();
+              return;
+            } catch (_) {
+              // Safari/older in-app browsers can still open their native picker.
+            }
+          }
+          visitDateInput.focus({ preventScroll: true });
+        });
         var syncDateDisplay = function () {
           dateField.classList.toggle("has-value", !!visitDateInput.value);
         };
